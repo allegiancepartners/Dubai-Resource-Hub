@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UAE Navigator · Allegiance Partners for EXE Capital</title>
+<style>
+
+  :root{
+    --teal-900:#0a2540;
+    --teal-700:#123a63;
+    --teal-600:#1b4f82;
+    --teal-500:#3572ad;
+    --teal-100:#e8eef6;
+    --coral-600:#b8860b;
+    --coral-100:#faf1dc;
+    --ink-900:#161b22;
+    --ink-600:#4b5563;
+    --ink-400:#818a95;
+    --paper:#f8f7f2;
+    --card:#ffffff;
+    --line:#e1e0d8;
+    --shadow:0 2px 10px rgba(10,37,64,0.08);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;
+    background:var(--paper);color:var(--ink-900);
+  }
+  .wrap{max-width:1180px;margin:0 auto;padding:28px 24px 64px;}
+
+  .page-nav{
+    display:flex;flex-wrap:nowrap;overflow-x:auto;gap:10px;
+    padding:14px 0;margin-bottom:18px;border-bottom:1px solid var(--line);
+  }
+  .nav-btn{
+    display:inline-flex;align-items:center;gap:6px;white-space:nowrap;
+    font-size:0.82rem;font-weight:600;color:var(--teal-900);text-decoration:none;
+    background:var(--card);border:1px solid var(--line);border-radius:20px;
+    padding:8px 16px;transition:all .15s ease;
+  }
+  .nav-btn:hover{border-color:var(--coral-600);box-shadow:var(--shadow);}
+  .nav-btn.active{background:var(--teal-600);color:#fff;border-color:var(--teal-600);}
+
+  .hero{
+    background:linear-gradient(135deg,var(--teal-900),var(--teal-600));
+    color:#fff;border-radius:16px;padding:32px 36px;
+    margin-bottom:28px;position:relative;overflow:hidden;
+  }
+  .hero::after{
+    content:"";position:absolute;right:-60px;top:-60px;
+    width:220px;height:220px;border-radius:50%;background:rgba(255,255,255,0.07);
+  }
+  .hero .brand-label{
+    color:var(--coral-600);font-size:0.78rem;font-weight:700;
+    letter-spacing:.14em;text-transform:uppercase;margin-bottom:14px;
+  }
+  .hero h1{margin:0 0 8px;font-size:1.7rem;font-weight:700;letter-spacing:-0.01em;color:#fff;}
+  .hero p{margin:0;max-width:720px;color:rgba(255,255,255,0.88);line-height:1.55;font-size:0.97rem;}
+  .demo-flag{
+    display:inline-block;font-size:10px;font-weight:600;letter-spacing:.04em;
+    text-transform:uppercase;background:rgba(184,134,11,0.25);color:#f0c96e;
+    padding:2px 8px;border-radius:20px;margin-left:10px;vertical-align:2px;
+    border:1px solid rgba(184,134,11,0.4);
+  }
+
+  .disc{
+    background:var(--coral-100);border:0.5px solid #F0DFC0;
+    border-left:3px solid var(--coral-600);border-radius:0 8px 8px 0;
+    padding:12px 16px;font-size:12.5px;color:#63460b;margin-bottom:20px;line-height:1.6;
+  }
+  .info{
+    background:#E6F1FB;border-left:3px solid var(--teal-500);border-radius:0 8px 8px 0;
+    padding:12px 16px;font-size:13px;color:#0C447C;margin-bottom:14px;line-height:1.6;
+  }
+  .success{
+    background:#EAF3DE;border-left:3px solid #3B6D11;border-radius:0 8px 8px 0;
+    padding:12px 16px;font-size:13px;color:#1B4D1B;margin-bottom:14px;line-height:1.6;
+  }
+  .warn{
+    background:var(--coral-100);border-left:3px solid #A32D2D;border-radius:0 8px 8px 0;
+    padding:12px 16px;font-size:13px;color:#63460b;margin-bottom:14px;line-height:1.6;
+  }
+  .intro{font-size:13px;color:var(--ink-600);margin-bottom:20px;line-height:1.6;}
+
+  .card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;margin-bottom:24px;}
+  .card{
+    background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:20px;box-shadow:var(--shadow);text-decoration:none;color:inherit;
+    display:block;transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(10,37,64,0.14);}
+  .card .ic{font-size:1.5rem;margin-bottom:10px;display:block;}
+  .card h3{font-size:0.98rem;color:var(--teal-900);margin-bottom:6px;}
+  .card p{font-size:12.5px;color:var(--ink-600);line-height:1.5;}
+  .card .seg-tag{
+    display:inline-block;font-size:10px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;
+    background:var(--teal-100);color:var(--teal-700);padding:2px 8px;border-radius:20px;margin-top:8px;
+  }
+
+  .toc{
+    background:var(--card);border:1px solid var(--line);
+    border-radius:14px;margin-bottom:26px;overflow:hidden;
+    box-shadow:var(--shadow);
+  }
+  .toc-row{
+    display:flex;gap:14px;align-items:flex-start;padding:13px 18px;
+    border-bottom:0.5px solid var(--line);text-decoration:none;color:inherit;
+    transition:background .12s;
+  }
+  .toc-row:last-child{border-bottom:none;}
+  .toc-row:hover{background:var(--teal-100);}
+  .toc-letter{flex:0 0 22px;font-weight:700;color:var(--teal-600);font-size:14px;}
+  .toc-title{flex:0 0 190px;font-weight:600;font-size:13px;color:var(--teal-900);}
+  .toc-desc{flex:1;font-size:12.5px;color:var(--ink-600);line-height:1.5;}
+
+  .app{
+    background:var(--card);border:1px solid var(--line);
+    border-radius:14px;margin-bottom:22px;overflow:hidden;
+    scroll-margin-top:80px;box-shadow:var(--shadow);
+  }
+  .app-banner{
+    background:var(--teal-900);padding:18px 24px;border-bottom:3px solid var(--coral-600);
+  }
+  .app-banner h2{color:#fff;margin-bottom:4px;font-size:1.05rem;font-weight:700;}
+  .app-banner .sub{color:rgba(199,208,224,0.9);margin-bottom:0;font-size:12.5px;}
+  .app-body{padding:20px 24px 22px;}
+
+  h3{font-size:14px;font-weight:700;color:var(--teal-900);margin:18px 0 8px;}
+  h3:first-child{margin-top:0;}
+  p{font-size:13px;color:var(--ink-900);line-height:1.6;margin-bottom:10px;}
+  .small{font-size:12px;color:var(--ink-600);line-height:1.55;}
+
+  ul{list-style:none;margin-bottom:12px;}
+  li{font-size:13px;line-height:1.55;margin-bottom:6px;padding-left:16px;position:relative;}
+  li::before{content:"•";position:absolute;left:0;color:var(--teal-500);}
+
+  .item{margin-bottom:10px;}
+  .item-t{font-weight:700;color:var(--teal-900);font-size:13px;margin-bottom:2px;}
+  .item-d{font-size:12.5px;color:var(--ink-600);line-height:1.5;}
+
+  table{width:100%;border-collapse:collapse;font-size:12.5px;margin-bottom:12px;}
+  th{font-size:11px;font-weight:600;color:#fff;background:var(--teal-900);padding:9px 12px;text-align:left;}
+  th.r,td.r{text-align:right;}
+  td{padding:8px 12px;border-bottom:0.5px solid var(--line);color:var(--ink-900);}
+  tr:nth-child(even) td{background:var(--teal-100);}
+
+  .back-top{text-align:right;margin-top:8px;}
+  .back-top a{font-size:11.5px;color:var(--teal-500);text-decoration:none;font-weight:600;}
+  .back-top a:hover{color:var(--coral-600);text-decoration:underline;}
+
+  .section-label{
+    font-size:0.72rem;letter-spacing:.06em;text-transform:uppercase;
+    color:var(--coral-600);font-weight:700;margin:0 0 16px;
+  }
+
+  .steps{list-style:none;counter-reset:stepnum;margin-bottom:16px;}
+  .steps li{counter-increment:stepnum;padding-left:38px;margin-bottom:14px;min-height:26px;}
+  .steps li::before{
+    content:counter(stepnum);position:absolute;left:0;top:0;
+    width:24px;height:24px;border-radius:50%;background:var(--teal-600);color:#fff;
+    font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;
+  }
+  .cta-strip{
+    background:linear-gradient(135deg,var(--teal-900),var(--teal-600));border-radius:14px;
+    padding:26px 30px;color:#fff;text-align:center;margin:26px 0;
+  }
+  .cta-strip h3{color:#fff;font-size:1.05rem;margin-bottom:8px;}
+  .cta-strip p{color:rgba(255,255,255,0.85);margin-bottom:16px;}
+  .cta-btn{
+    display:inline-block;background:var(--coral-600);color:#fff;font-weight:700;font-size:13px;
+    padding:12px 26px;border-radius:24px;text-decoration:none;letter-spacing:.02em;
+  }
+  .cta-btn:hover{background:#a3790a;}
+
+  /* Tabs */
+  .tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;}
+  .tab{
+    font-size:12.5px;font-weight:600;padding:9px 16px;border-radius:20px;
+    background:var(--teal-100);color:var(--teal-700);cursor:pointer;border:1px solid transparent;user-select:none;
+  }
+  .tab.on{background:var(--teal-600);color:#fff;}
+  .pnl{display:none;} .pnl.on{display:block;}
+
+  /* Accordion / roadmap phases */
+  .ph{border:1px solid var(--line);border-radius:12px;margin-bottom:12px;overflow:hidden;}
+  .ph-h{
+    display:flex;align-items:center;justify-content:space-between;gap:12px;
+    padding:14px 18px;background:var(--teal-100);cursor:pointer;
+  }
+  .ph-h .t{font-weight:700;font-size:13.5px;color:var(--teal-900);}
+  .ph-h .n{font-size:11.5px;color:var(--ink-600);}
+  .ph-body{padding:0 18px;max-height:0;overflow:hidden;transition:max-height .25s ease;}
+  .ph.open .ph-body{padding:14px 18px 18px;max-height:900px;}
+  .ph-arrow{transition:transform .2s ease;color:var(--teal-600);font-size:12px;}
+  .ph.open .ph-arrow{transform:rotate(90deg);}
+  .ms{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;font-size:12.5px;color:var(--ink-900);line-height:1.5;}
+  .ms input{margin-top:3px;accent-color:var(--teal-600);}
+  .ms.done label{color:var(--ink-400);text-decoration:line-through;}
+
+  .prog-wrap{margin-bottom:20px;}
+  .prog-bar{height:10px;background:var(--teal-100);border-radius:6px;overflow:hidden;}
+  .prog-fill{height:100%;background:linear-gradient(90deg,var(--teal-600),var(--coral-600));width:0%;transition:width .3s ease;}
+  .prog-label{font-size:12px;color:var(--ink-600);margin-top:6px;display:flex;justify-content:space-between;}
+
+  /* Sliders */
+  .drv{margin-bottom:16px;}
+  .drv .lbl{display:flex;justify-content:space-between;font-size:12.5px;font-weight:600;color:var(--teal-900);margin-bottom:4px;}
+  .drv .lbl span.val{color:var(--coral-600);font-weight:700;}
+  .drv input[type=range]{width:100%;accent-color:var(--teal-600);}
+  .drv .scale{display:flex;justify-content:space-between;font-size:10.5px;color:var(--ink-400);margin-top:2px;}
+
+  .score-box{
+    background:var(--teal-900);border-radius:14px;padding:22px 26px;color:#fff;text-align:center;margin-bottom:18px;
+  }
+  .score-box .num{font-size:2.4rem;font-weight:800;color:#fff;}
+  .score-box .band{font-size:13px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;margin-top:4px;}
+  .score-box .band.low{color:#8fd19e;} .score-box .band.med{color:#f0c96e;} .score-box .band.high{color:#f28b82;}
+  .score-box .sub{font-size:12px;color:rgba(255,255,255,0.75);margin-top:8px;}
+
+  .result-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-bottom:16px;}
+  .result-card{background:var(--teal-100);border-radius:10px;padding:14px 16px;}
+  .result-card .rl{font-size:11px;color:var(--ink-600);text-transform:uppercase;letter-spacing:.03em;font-weight:700;margin-bottom:4px;}
+  .result-card .rv{font-size:16px;font-weight:700;color:var(--teal-900);}
+
+  .radio-grp{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px;}
+  .radio-opt{
+    font-size:12.5px;font-weight:600;padding:9px 14px;border-radius:10px;border:1.5px solid var(--line);
+    background:#fff;cursor:pointer;color:var(--ink-600);
+  }
+  .radio-opt.sel{border-color:var(--teal-600);background:var(--teal-100);color:var(--teal-900);}
+
+  footer{
+    margin-top:40px;padding-top:18px;border-top:1px solid var(--line);
+    font-size:0.76rem;color:var(--ink-400);line-height:1.6;text-align:center;
+  }
+  footer strong{color:var(--teal-900);}
+
+  @media(max-width:600px){
+    .toc-row{flex-wrap:wrap;}
+    .toc-title{flex:1 0 100%;}
+    .wrap{padding:16px 14px 48px;}
+  }
+
+
+</style>
+</head>
+<body id="top">
+<div class="wrap">
+
+<nav class="page-nav">
+  <a href="index.html" class="nav-btn">🏠 Resource Hub</a>
+  <a href="dxb-navigator.html" class="nav-btn active">🧭 Navigator</a>
+  <a href="dxb-discovery-call.html" class="nav-btn">📞 Discovery Call</a>
+  <a href="dxb-flowchart.html" class="nav-btn">🔁 Flowchart</a>
+  <a href="dxb-toolkit.html" class="nav-btn">🧰 Succession &amp; Structuring Toolkit</a>
+  <a href="dxb-reference-library.html" class="nav-btn">📚 Reference Library</a>
+  <a href="dxb-about-us.html" class="nav-btn">👥 About Us</a>
+  <a href="dxb-security-overview.html" class="nav-btn">🔒 Claude Security</a>
+</nav>
+
+<header class="hero">
+  <div class="brand-label">Allegiance Partners · for EXE Capital Wealth Management</div>
+  <h1>UAE Navigator <span class="demo-flag">Illustrative — v1</span></h1>
+  <p>Regulatory map, professional associations, and the advisor bench for EXE Capital Wealth Management.</p>
+</header>
+
+
+<div class="disc">This document is provided for informational and educational purposes only and does not constitute legal, tax, regulatory, or investment advice. Allegiance Partners does not act as your attorney, tax adviser, or DIFC/DFSA-qualified counsel. It is an <strong>illustrative, v1 working example</strong> prepared for EXE Capital’s internal discussion, not specific to any individual family, and all names, figures, and fact patterns are generic and for discussion purposes only. Please confirm all regulatory, tax, and legal detail with qualified UAE counsel before acting on anything below.</div>
+<p class="intro">A map of the regulators, associations, and advisors relevant to structuring UHNW wealth in the
+UAE — including EXE Capital's own local partners, whose licenses, infrastructure, and relationships are the
+foundation this build sits on.</p>
+
+<div class="section-label">Regulatory Map</div>
+<div class="card-grid">
+  <div class="card">
+    <span class="ic">🏛️</span><h3>DIFC / DFSA</h3>
+    <p>Dubai's original financial free zone, English common law, independent courts. The natural home for
+    onshore wealth management — recommended domicile for EXE Capital Wealth Management. Licensing scales from
+    light-touch Single Family Office registration to a full discretionary asset/wealth manager license.</p>
+  </div>
+  <div class="card">
+    <span class="ic">🏛️</span><h3>ADGM / FSRA</h3>
+    <p>Abu Dhabi's rival financial free zone — also English common law, faster recent AUM/registration growth.
+    Referenced here principally for its Foundations and Trusts regimes (Reference Library, Appendix C), which are
+    frequently used alongside a DIFC-domiciled advisory relationship.</p>
+  </div>
+  <div class="card">
+    <span class="ic">⛓️</span><h3>VARA</h3>
+    <p>Virtual Assets Regulatory Authority — governs EXE Bank's settlement, custody, and token-economy
+    infrastructure. VARA's regulations explicitly exclude DIFC from their scope, which is why EXE Bank sits outside
+    the wealth-management entity rather than inside it.</p>
+  </div>
+</div>
+
+<div class="section-label">Professional Associations</div>
+<div class="card-grid">
+  <div class="card">
+    <span class="ic">🌐</span><h3>STEP (UAE Chapter)</h3>
+    <p>The Society of Trust and Estate Practitioners has an active UAE branch — the most directly transferable
+    credentialing body from Allegiance's US bench, given its global, cross-border focus.</p>
+  </div>
+  <div class="card">
+    <span class="ic">⚖️</span><h3>DIFC Courts &amp; DIFC Wills Service Registry</h3>
+    <p>Not a membership association, but the operational counterpart to STEP for this market: the registry through
+    which a will electing non-Sharia succession is filed and recognized (Reference Library, Appendix A).</p>
+  </div>
+  <div class="card">
+    <span class="ic">📋</span><h3>US associations — not directly transferable</h3>
+    <p>NAEPC, the Family Office Exchange, the Purposeful Planning Institute, the Council on Foundations, and ACGA
+    are US-centric (largely tied to the 501(c)(3)/DAF ecosystem) and have no direct UAE equivalent. Retained here
+    only as a note, not as referral sources for this market.</p>
+  </div>
+</div>
+
+<div class="section-label">Trusted Advisor Bench</div>
+<p class="small" style="margin-bottom:14px;">Under the operational philosophy behind this build, EXE Capital Wealth Management keeps a single in-house Wealth Strategist rather than a full bench of in-house Estate, Trust &amp; Tax specialists — that Strategist manages a small set of external strategic partnerships instead, on a fixed-to-floating cost basis, with preferential terms negotiated for EXE Capital's clients.</p>
+<div class="card-grid">
+  <div class="card">
+    <span class="ic">⚖️</span><h3>Baker &amp; McKenzie</h3>
+    <p>Specialist international law firm with a Dubai/DIFC presence. Anchor legal partner for DIFC Will registration,
+    Foundation/Trust drafting, DFSA licensing support, and structuring Wealth Advisor compensation (Operational
+    Philosophy, §8.2).</p>
+  </div>
+  <div class="card">
+    <span class="ic">🌐</span><h3>Deloitte</h3>
+    <p>Specialist international accounting/tax firm with a Dubai presence. Anchor tax and accounting partner
+    alongside Baker &amp; McKenzie for cross-border structuring work.</p>
+  </div>
+  <div class="card">
+    <span class="ic">🏛️</span><h3>Local Legal Firm <em>(TBD)</em></h3>
+    <p><em>To be confirmed.</em> A comparable UAE-based local law firm, rounding out the legal side of the bench
+    alongside Baker &amp; McKenzie.</p>
+  </div>
+  <div class="card">
+    <span class="ic">📊</span><h3>Local CPA Firm <em>(TBD)</em></h3>
+    <p><em>To be confirmed.</em> A comparable UAE-based local accounting/CPA firm, rounding out the tax and
+    accounting side of the bench alongside Deloitte.</p>
+  </div>
+  <div class="card">
+    <span class="ic">🇨🇭</span><h3>Malcolm Dermit — International Wealth Protection, Zurich</h3>
+    <p>Allegiance's existing PPLI structuring partner. Directly relevant to Non-Resident and Transnational UHNWI
+    clients evaluating a cross-border PPLI wrapper alongside a UAE structure (Reference Library, Appendix F).</p>
+  </div>
+  <div class="card">
+    <span class="ic">💰</span><h3>CovenantLab — Private Capital Advisory</h3>
+    <p>Referral partner for the private-capital-advisory vertical sitting alongside EXE Capital Wealth Management's
+    core advisory offering.</p>
+  </div>
+</div>
+
+<div class="section-label">EXE Capital's Local Partners (Dubai)</div>
+<div class="card-grid">
+  <div class="card">
+    <span class="ic">🤝</span><h3>Burhan</h3>
+    <p>Credit risk. Brings the risk-management infrastructure a licensed wealth manager needs, and the closest
+    internal link to EXE Bank's balance-sheet functions.</p>
+  </div>
+  <div class="card">
+    <span class="ic">🏛️</span><h3>Khaldun</h3>
+    <p>Strategic relationships — adviser to HH Sheikh Mansour. Brings high-level credibility and access that would
+    take years for a new entrant to build independently.</p>
+  </div>
+  <div class="card">
+    <span class="ic">📈</span><h3>Shams</h3>
+    <p>Business development at Dubai World Trade Center. Flagged as the single most important client-acquisition
+    asset — attracting clients, not building infrastructure, is the hardest part of starting a new wealth
+    management operation in this market.</p>
+  </div>
+</div>
+<div class="info">John's framing from the 9/24 call with Elham: EXE Capital's local partners bring licenses, office
+infrastructure, and local credibility/client access, but not operational wealth-management experience — an
+"empty house" in a prime location that needs wealth-management "furniture." This Hub, and the advisory team behind
+it, is that furniture.</div>
+
+
+<footer>© <strong>Allegiance Partners</strong> 2026. Illustrative example prepared for EXE Capital — not specific to any individual family or client. Does not constitute legal, tax, regulatory, or investment advice.</footer>
+
+</div>
+
+</body>
+</html>
